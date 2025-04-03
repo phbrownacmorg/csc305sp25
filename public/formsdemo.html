@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Forms demo, CSC 305, spring 2025</title>
+        <link rel="stylesheet" href="stylesheets/style.css">
+        <link rel="stylesheet" href="stylesheets/formsdemo.css">
+   </head>
+    <body>
+        <h1>Forms demo, CSC 305, spring 2025</h1>
+
+        <h2>GET form</h2>
+        <form action="https://cs.converse.edu/CSC235/formecho.php" method="get">
+            <fieldset class="monty-python">
+                <legend>Monty Python's Bridge of Death</legend>
+                <div><label for="name">What is your name?</label> 
+                    <input name="name" id="name" type="text" required><span class="flag"></span></div>
+                <div><label for="quest">What is your quest?</label> 
+                    <input name="quest" id="quest" type="text" required><span class="flag"></span></div>
+                <div><label for="color">What is your favorite color?</label>
+                    <input type="color" id="color" name="color" required><span class="flag"></span></div>
+                <div class="gotcha"><label for="swallow-speed">What is the average speed of a swallow carrying a coconut?</label>
+                    <input type="number" name="swallow-speed" id="swallow-speed" min="-10" max="10" step="1" required>
+                    <label for="swallow-speed">m/s</label><span class="flag"></span></div>
+                <div class="riposte"><label for="can-swallow">Can a swallow <em>really</em> carry a coconut?</label>
+                    <select name="can-swallow" id="can-swallow" required>
+                        <option value="">&mdash;Please choose an option&mdash;</option>
+                        <option id="small">No, the swallow is much too small</option>
+                        <option id="super-swallow">Yes, it's SuperSwallow&trade;!</option>
+                        <option id="king-arthurs-answer">Would that be an African swallow or a European swallow?</option>
+                        <option id="balloon">Only if it's attached to a Chinese spy balloon</option>
+                    </select><span class="flag"></span></div>
+                    <div><label for="password">The super-secret password is:</label>
+                        <input type="password" name="password" id="password"><span class="flag"></span></div>
+                    <input type="hidden" name="hidden" value="This is most often useful for communicating state between forms">
+                </fieldset>
+            <fieldset class="choices">
+                <legend>Choices&hellip;</legend>
+                <div id="class" class="choice"><p>What is your graduating class?</p>
+                    <input type="radio" id="2025" name="graduation" value="2025"> 
+                    <label for="2025">2025</label>
+                    <input type="radio" id="2026" name="graduation" value="2026"> 
+                    <label for="2026">2026</label>
+                    <input type="radio" id="2027" name="graduation" value="2027"> 
+                    <label for="2027">2027</label>
+                    <input type="radio" id="2028" name="graduation" value="2028"> 
+                    <label for="2028">2028</label>
+                </div>
+                <div id="animal" class="choice"><p>My favorite animal(s) include (check all that apply):</p>
+                    <input type="checkbox" value="cats" name="animal-cats" id="cats">
+                    <label for="cats">Cats</label>
+                    <input type="checkbox" value="dogs" name="animal-dogs" id="dogs">
+                    <label for="dogs">Dogs</label>
+                    <input type="checkbox" value="pigs" name="animal-pigs" id="pigs">
+                    <label for="pigs">Pigs</label>
+                    <input type="checkbox" value="newts" name="animal-newts" id="newts">
+                    <label for="newts">Newts</label>
+                    <input type="checkbox" value="cuddly" name="animal-cuddly" id="cuddly">
+                    <label for="cuddly">Anything cuddly</label>
+                    <input type="checkbox" value="edible" name="animal-edible" id="edible">
+                    <label for="edible">Anything that goes well on a grill</label>
+                    <input type="checkbox" value="grinch" name="animal-grinch" id="grinch">
+                    <label for="grinch">I'm an animal-hating vegetarian.  Leave me alone.</label>
+                </div>
+            </fieldset>
+            <input type="submit" value="Submit"><input type="reset" value="Reset">
+        </form>
+
+        <ul class="validity key">
+            <li class="invalid"><span>*</span> Required field, not yet valid</li>
+            <li class="valid"><span>&check;</span> Valid field</li>
+        </ul>
+
+
+    </body>
+</html>

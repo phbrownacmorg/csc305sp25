@@ -1,0 +1,108 @@
+/* For a more organized exploration of CSS attributes, see tagsdemo.css */
+
+/* Element selection by tag name.  Useful when appearance and structure
+   are closely related. */
+h1 {  /* Center the top-level headers */
+    text-align: center;
+}
+
+/* Selectors separated by commas, as here, mean that the style data applies to
+   elements that match *any* of the selectors.*/
+h1, h2, h3, h4, h5, h6 { /* Turn all the headers, at every level, purple */
+    color: purple; 
+} 
+
+label {
+    margin-right: 0.5em;
+}
+
+/* element selection by parent gives some context to the selection */
+fieldset > div {
+    margin-bottom: 1ex;
+}
+
+/* element selection by parent doesn't have to use element tags only */
+.choice > p {
+    margin: 0;
+}
+
+/* element selection by class.
+  This is probably *the* most common selector. 
+  Note that the CSS properties set here are *inherited* by the descendants
+  of the element that actually matches this selector (which is a div). */
+.gotcha {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 110%;
+    background-color: lightgray;
+}
+
+/* element selection by id
+    Highly specific, but you can only do one element at a time. */
+#super-swallow {
+    font-family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+    font-style: italic;
+    font-size: 125%;
+    font-weight: bold;
+}
+
+/* element selection using the parent (>) and sibling (+) operators to
+   choose the label *after* the input in the question with class 'gotcha' */
+.gotcha > input + label {
+    margin-left: 0.5em;
+    margin-right: 0;
+}
+
+
+/* element selection by :last-child pseudo-class.  Pseudo-classes are 
+   are often helpful when you don't have control of the HTML, *but*
+   they are usually vulnerable to somebody editing (especially reordering)
+   the HTML. */
+.monty-python > :last-child {
+    font-family: 'Playfair Display', 'Bookman Old Style', 'Times New Roman', serif;
+}
+
+/* Element selection by ancestry, producing a classic outline.
+   The more-specific-stuff-rules part of the CSS cascade is crucial here. */
+.choices label {
+    background-color: tan;
+}
+
+/* Element selection by sibling (the + part) and :first-of-type pseudoclass. */
+div.choice:first-of-type > input:first-of-type + label, 
+div.choice:first-of-type > input:nth-of-type(3) + label { 
+    background-color: red;  /* Red Devil year */
+}
+
+div.choice:first-of-type > input:last-of-type + label, 
+div.choice:first-of-type > input:nth-of-type(2) + label { 
+    background-color: pink; /* Pink Panther year */
+}
+
+
+/* ------------------- Indicate required items ------------------------------------------------ */
+span.flag::before {
+    color: firebrick;
+    content: '*';
+}
+
+:valid + span.flag::before, span.flag.valid::before, 
+:valid + label + span.flag::before {
+    color: green;
+    content: '✓';
+}
+
+/* for the key at the bottom */
+ul.validity {
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+
+.invalid {
+    color: firebrick;
+}
+
+.valid {
+    color: green;
+}
+

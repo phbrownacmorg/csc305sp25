@@ -1,0 +1,94 @@
+extends layout
+
+block content
+  h1= title
+  h2 GET form
+  form(action='https://cs.converse.edu/CSC235/formecho.php',method='get')
+    fieldset(class='monty-python')
+      legend Monty Python's Bridge of Death
+
+      //- Simple text-entry box.  It's required, so the form won't submit unless
+      //- there's something in the box.
+      div
+        - var q_name = 'name'
+        label(for=q_name) What is your name?
+        input(type="text", id=q_name, name=q_name, required)
+        span(class='flag')
+      
+      //- Another simple text-entry box, also required.
+      div
+        - q_name = 'quest'
+        label(for=q_name) What is your quest?
+        input(type='text', id=q_name, name=q_name, required)
+        span(class='flag')
+
+      //- A color picker.  This is also required, but since it starts out with
+      //- a value that isn't a big deal.
+      div
+        - q_name = 'color'
+        label(for=q_name) What is your favorite color?
+        input(type='color', id=q_name, name=q_name, required)
+        span(class='flag')
+
+      //- A number-picker control, also required.
+      div(class='gotcha')
+        - q_name = 'swallow-speed'
+        label(for=q_name) What is the average speed of a swallow carrying a coconut?
+        input(type='number', id=q_name, name=q_name, min='-1', max='10', step='1', required)
+        label(for=q_name) m/s
+        span(class='flag')
+
+      //- A dropdown (select element).  "Required" here means that the dropdown
+      //- has to be set to a choice that has a non-blank value for the form to
+      //- submit.  Note that the first choice has its value attribute set to the
+      //- empty string.
+      div(class='riposte')
+        - q_name = 'can-swallow'
+        label(for=q_name) Can a swallow #[em really] carry a coconut?
+        select(name=q_name, id=q_name, required)
+          option(value='') &mdash;Please choose an option&mdash;
+          option(id='small') No, the swallow is much too small
+          option(id='super-swallow') Yes, it's SuperSwallow&trade;!
+          option(id='king-arthurs-answer') Would that be an African swallow or a European swallow?
+          option(id='balloon') Only if it's attached to a Chinese spy balloon
+        span(class='flag')
+
+      //- Another useful form control is the password control, which doesn't
+      //- echo back the characters typed in.  Instead, each character is shown
+      //- as an asterisk.
+      div
+        - q_name = 'password'
+        label(for=q_name) The super-secret password is:
+        input(type='password', id=q_name, name=q_name, required)
+        span(class='flag')
+
+      //- Hidden controls can be used to communicate state across form
+      //- submissions, so a final submission can be built up step by
+      //- step instead of having to be entered all at once.
+      - q_name='hidden'
+      input(type='hidden', id=q_name, name=q_name, value='This is most often useful for communicating state across a form submission.')
+
+    //- The controls in this fieldset show the use of Pug iteration    
+    fieldset(class='choices')
+      legend Choices&hellip;
+
+      //- Instead of creating four radio buttons individually, find the year to start with and use a loop
+      div(id='class', class='choice')
+        p What is your graduating class? 
+        - var thisyear = (new Date()).getFullYear()
+        each year in [thisyear, thisyear+1, thisyear+2, thisyear+3]
+          input(type='radio', name='graduation', id=year)
+          label(for=year) #{year}
+
+      //- Instead of creating a group of checkboxes individually, loop over a Javascript object (like a Python dictionary)      
+      div(id='animal', class='choice')
+        p My favorite animal(s) include (check all that apply):
+        - var animals = {'cats': 'Cats', 'dogs': 'Dogs', 'newts': 'Newts', 'cuddly': 'Anything cuddly'}
+        each prompt, animal in animals
+          input(type='checkbox', value=animal, name=animal, id=animal)
+          label(for=animal) #{prompt}
+
+
+    //- A submit button submits the form.  A reset button resets it.
+    input(type='submit', value='Submit')
+    input(type='reset', value='Reset')
