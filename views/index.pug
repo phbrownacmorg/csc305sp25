@@ -72,18 +72,17 @@ block content
     fieldset(class='choices')
       legend Choices&hellip;
 
-      //- Instead of creating four radio buttons individually, find the year to start with and use a loop
+      //- Instead of creating four radio buttons individually, use a loop
       div(id='class', class='choice')
-        p What is your graduating class? 
-        - var thisyear = (new Date()).getFullYear()
-        each year in [thisyear, thisyear+1, thisyear+2, thisyear+3]
-          input(type='radio', name='graduation', id=year)
-          label(for=year) #{year}
+        p How far do you live from Converse? 
+        each distance in ['0-50', '50-100', '100-200', '200+']
+          input(type='radio', name='distance', id=distance)
+          label(for=distance) #{distance} miles
 
       //- Instead of creating a group of checkboxes individually, loop over a Javascript object (like a Python dictionary)      
       div(id='animal', class='choice')
         p My favorite animal(s) include (check all that apply):
-        - var animals = {'cats': 'Cats', 'dogs': 'Dogs', 'newts': 'Newts', 'cuddly': 'Anything cuddly'}
+        - var animals = {'cats': 'Cats', 'dogs': 'Dogs', 'pigs': 'Pigs', 'newts': 'Newts', 'cuddly': 'Anything cuddly'}
         each prompt, animal in animals
           input(type='checkbox', value=animal, name=animal, id=animal)
           label(for=animal) #{prompt}

@@ -62,24 +62,6 @@ fieldset > div {
     font-family: 'Playfair Display', 'Bookman Old Style', 'Times New Roman', serif;
 }
 
-/* Element selection by ancestry, producing a classic outline.
-   The more-specific-stuff-rules part of the CSS cascade is crucial here. */
-.choices label {
-    background-color: tan;
-}
-
-/* Element selection by sibling (the + part) and :first-of-type pseudoclass. */
-div.choice:first-of-type > input:first-of-type + label, 
-div.choice:first-of-type > input:nth-of-type(3) + label { 
-    background-color: red;  /* Red Devil year */
-}
-
-div.choice:first-of-type > input:last-of-type + label, 
-div.choice:first-of-type > input:nth-of-type(2) + label { 
-    background-color: pink; /* Pink Panther year */
-}
-
-
 /* ------------------- Indicate required items ------------------------------------------------ */
 span.flag::before {
     color: firebrick;
